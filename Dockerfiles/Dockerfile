@@ -10,4 +10,4 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 EXPOSE 5000
 
-CMD ["python", "-u", "main.py"]
+CMD ["python", "-u", "app.py"]
