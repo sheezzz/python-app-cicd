@@ -4,7 +4,9 @@ WORKDIR /api
 
 COPY ./requirements.txt /api
 
-RUN apt-get update && apt-get install -y --no-install-recommends gcc
+# Install gcc using apk
+RUN apk update && \
+    apk add --no-cache gcc
 
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
