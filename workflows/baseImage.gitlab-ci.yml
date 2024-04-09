@@ -1,0 +1,22 @@
+stages:
+  - "build"
+
+variables:
+  # -------------- GCP Configuration Variables --------------------------------
+  GCP_AR_REGION: northamerica-northeast2-docker.pkg.dev  # region of the artifact registry repository
+  PROJECT_ID: cbd3345-2-sheena  # project ID
+  ARTIFACT_REGISTRY_REPOSITORY: app-dev-docker # name of the artifact registry repository
+  GCP_AR_TAG: $GCP_AR_REGION/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY # the GCP tag for docker push and pull
+  RUNNER_TAG: gcp-runner1-linux # agent to run the pipeline
+  BASE_IMAGE_NAME: "base_image"
+  BASE_IMAGE_TAG: ${GCP_AR_TAG}/${BASE_IMAGE_NAME}:latest
+
+
+build_base_image:
+  stage: "build"
+  tags: [$RUNNER_TAG]
+  before_script:
+    - gcloud auth configure-docker $GCP_AR_REGION
+  script:
+    - docker build -t $BASE_IMAGE_TAG -f Dockerfiles/DockerfileBaseImage .
+    - docker push $BASE_IMAGE_TAG
