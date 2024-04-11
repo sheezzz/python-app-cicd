@@ -45,7 +45,7 @@ build:
     - docker push ${IMAGE_TAG}
 
 isort:
-  stage: linting
+  stage: "linting"
   image: ${IMAGE_TAG}
   script:
     - isort --check-only app.py test_app.py
@@ -53,7 +53,7 @@ isort:
     - push
 
 black:
-  stage: linting
+  stage: "linting"
   image: ${IMAGE_TAG}
   script:
     - black --check app.py test_app.py
@@ -61,7 +61,7 @@ black:
     - push
 
 flake8:
-  stage: linting
+  stage: "linting"
   image: ${IMAGE_TAG}
   script:
     - flake8 app.py test_app.py
@@ -69,7 +69,7 @@ flake8:
     - push
 
 pylint:
-  stage: linting
+  stage: "linting"
   image: ${IMAGE_TAG}
   script:
     - pylint app.py test_app.py
