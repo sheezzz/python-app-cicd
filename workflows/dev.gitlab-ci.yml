@@ -46,24 +46,32 @@ build:
 
 isort:
   stage: "linting"
+  needs:
+    - "build"
   image: ${IMAGE_TAG}
   script:
     - isort --check-only app.py test_app.py
 
 black:
   stage: "linting"
+  needs:
+    - "build"
   image: ${IMAGE_TAG}
   script:
     - black --check app.py test_app.py
 
 flake8:
   stage: "linting"
+  needs:
+    - "build"
   image: ${IMAGE_TAG}
   script:
     - flake8 app.py test_app.py
 
 pylint:
   stage: "linting"
+  needs:
+    - "build"
   image: ${IMAGE_TAG}
   script:
     - pylint app.py test_app.py
