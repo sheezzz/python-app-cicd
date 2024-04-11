@@ -1,6 +1,6 @@
 stages:
-  - "build"
   - "linting"
+  - "build"
   - "test"
   - "deploy"
 
@@ -33,6 +33,15 @@ include:
     - gcloud config set account $SERVICE_ACCOUNT_USER
     - gcloud auth configure-docker $GCP_AR_REGION
 
+linting:
+  stage: "linting"
+  image: python:3.9-alpine
+  script:
+    - isort --check-only app.py test_app.py
+    - black --check app.py test_app.py
+    - flake8 app.py test_app.py
+    - pylint app.py test_app.py
+
 build:
   stage: "build"
   tags:
@@ -43,17 +52,6 @@ build:
     - echo ${MONGO_URI} > .env
     - docker build -t ${IMAGE_TAG} --build-arg BASE_IMAGE=$GCP_AR_TAG/$BASE_IMAGE:latest -f Dockerfiles/Dockerfile .
     - docker push ${IMAGE_TAG}
-
-linting:
-  stage: "linting"
-  needs:
-    - "build"
-  image: ${IMAGE_TAG}
-  script:
-    - isort --check-only app.py test_app.py
-    - black --check app.py test_app.py
-    - flake8 app.py test_app.py
-    - pylint app.py test_app.py
 
 #isort:
 #  stage: "linting"
@@ -90,7 +88,7 @@ linting:
 semgrep-sast:
   stage: "test"
   needs:
-    - "linting"
+    - "build"
   artifacts:
     when: always
     expire_in: 30 days
@@ -99,7 +97,7 @@ semgrep-sast:
 secret_detection:
   stage: "test"
   needs:
-    - "linting"
+    - "build"
   artifacts:
     when: always
     expire_in: 30 days
@@ -112,7 +110,7 @@ container_scanning:
     GIT_STRATEGY: clone
     CS_DOKCERFILE_PATH: ./Dockerfilebaseimage
   needs:
-    - "linting"
+    - "build"
   artifacts:
     when: always
     expire_in: 30 days
