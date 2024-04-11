@@ -36,6 +36,8 @@ include:
 linting:
   stage: "linting"
   image: python:3.9-alpine
+  before_script:
+    - pip install isort black flake8 pylint
   script:
     - isort --check-only app.py test_app.py
     - black --check app.py test_app.py
