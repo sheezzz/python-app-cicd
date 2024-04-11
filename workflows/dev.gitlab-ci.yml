@@ -33,35 +33,16 @@ include:
     - gcloud config set account $SERVICE_ACCOUNT_USER
     - gcloud auth configure-docker $GCP_AR_REGION
 
-isort:
+linting:
   stage: "linting"
   tags:
     - ${RUNNER_TAG}
   image: python:3.9-alpine
   before_script:
-    - pip install isort
+    - apk add --no-cache make
+    - make setup
   script:
-    - isort --check-only app.py test_app.py
-
-black:
-  stage: "linting"
-  tags:
-    - ${RUNNER_TAG}
-  image: python:3.9-alpine
-  before_script:
-    - pip install black
-  script:
-    - black --check app.py test_app.py
-
-flake8:
-  stage: "linting"
-  tags:
-    - ${RUNNER_TAG}
-  image: python:3.9-alpine
-  before_script:
-    - pip install flake8
-  script:
-    - flake8 app.py test_app.py
+    - make lint
 
 build:
   stage: "build"
@@ -74,7 +55,7 @@ build:
     - docker build -t ${IMAGE_TAG} --build-arg BASE_IMAGE=$GCP_AR_TAG/$BASE_IMAGE:latest -f Dockerfiles/Dockerfile .
     - docker push ${IMAGE_TAG}
   needs:
-    - ["isort", "black", "flake8"]
+    - ["linting"]
 
 semgrep-sast:
   stage: "test"
