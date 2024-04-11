@@ -90,6 +90,8 @@ container_scanning:
 
 unit-test-job:
   stage: "test"
+  tags:
+    - ${RUNNER_TAG}
   script:
     - echo "Running unit tests...
     - python -m unittest test_app.py
