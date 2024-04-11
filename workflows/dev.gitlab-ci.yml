@@ -93,7 +93,7 @@ unit-test-job:
   tags:
     - ${RUNNER_TAG}
   script:
-    - echo "Running unit tests...
+    - echo "Running unit tests..."
     - python -m unittest test_app.py
 
 deploy:
