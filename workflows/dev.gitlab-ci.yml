@@ -74,7 +74,7 @@ build:
     - docker build -t ${IMAGE_TAG} --build-arg BASE_IMAGE=$GCP_AR_TAG/$BASE_IMAGE:latest -f Dockerfiles/Dockerfile .
     - docker push ${IMAGE_TAG}
   needs:
-    - "linting"
+    - ["isort", "black", "flake8"]
 
 semgrep-sast:
   stage: "test"
