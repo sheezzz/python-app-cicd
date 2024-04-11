@@ -49,32 +49,24 @@ isort:
   image: ${IMAGE_TAG}
   script:
     - isort --check-only app.py test_app.py
-  only:
-    - push
 
 black:
   stage: "linting"
   image: ${IMAGE_TAG}
   script:
     - black --check app.py test_app.py
-  only:
-    - push
 
 flake8:
   stage: "linting"
   image: ${IMAGE_TAG}
   script:
     - flake8 app.py test_app.py
-  only:
-    - push
 
 pylint:
   stage: "linting"
   image: ${IMAGE_TAG}
   script:
     - pylint app.py test_app.py
-  only:
-    - push
 
 semgrep-sast:
   stage: "test"
