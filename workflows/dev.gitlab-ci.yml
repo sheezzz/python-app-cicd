@@ -95,7 +95,7 @@ unit-test-job:
   image: ${IMAGE_TAG}
   script:
     - echo "Running unit tests..."
-    - python -m unittest test_app.py
+    - python3 -m unittest test_app.py
 
 deploy:
   stage: "deploy"
