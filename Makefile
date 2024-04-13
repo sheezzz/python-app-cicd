@@ -16,5 +16,5 @@ linting:
 	pylint app.py test_app.py
 
 unit-test:
-	. venv/bin/activate && \
+	source /opt/venv/bin/activate && \
 	python3 -m unittest test_app.py
