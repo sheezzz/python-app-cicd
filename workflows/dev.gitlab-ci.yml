@@ -36,8 +36,8 @@ include:
 
 lint-job:
   stage: "linting"
-#  tags:
-#    - ${RUNNER_TAG}
+  tags:
+    - ${RUNNER_TAG}
   image: python:3.9-slim
   before_script:
     - apt-get update && apt-get install -y make
@@ -59,19 +59,18 @@ build:
     - docker build -t ${IMAGE_TAG} --build-arg BASE_IMAGE=$GCP_AR_TAG/$BASE_IMAGE:latest -f Dockerfiles/Dockerfile .
     - docker push ${IMAGE_TAG}
 
-#unit-test-job:
-#  stage: "test"
-#  needs:
-#    - "build"
-#  tags:
-#    - ${RUNNER_TAG}
-#  image: ${BASE_IMAGE_TAG}
-#  before_script:
-#    - sudo apt-get update
-#    - sudo apt-get install -y make
-#  script:
-#    - echo "Running unit tests..."
-#    - sudo make unit-test
+unit-test-job:
+  stage: "test"
+  needs:
+    - "build"
+  tags:
+    - ${RUNNER_TAG}
+  image: ${BASE_IMAGE_TAG}
+  before_script:
+    - apt-get update && apt-get install -y make
+  script:
+    - echo "Running unit tests..."
+    - sudo make unit-test
 
 semgrep-sast:
   stage: "test"
@@ -112,4 +111,4 @@ deploy:
     - docker rm -f $IMAGE_NAME
     - docker rmi $(docker images -q $GCP_AR_TAG/$IMAGE_NAME)
     - docker run -d -p 5000:5000 --name ${IMAGE_NAME} ${IMAGE_TAG}
-  needs: [ "semgrep-sast", "secret_detection", "container_scanning"]
+  needs: [ "semgrep-sast", "secret_detection", "container_scanning", "unit-test-job"]
