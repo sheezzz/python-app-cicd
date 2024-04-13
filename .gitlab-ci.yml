@@ -1,6 +1,5 @@
 stages:          # List of stages for jobs, and their order of execution
   - linting
-  - unit_test
   - build
   - test
   - deploy
