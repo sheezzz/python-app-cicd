@@ -93,9 +93,13 @@ unit-test-job:
   tags:
     - ${RUNNER_TAG}
   image: ${IMAGE_TAG}
+  before_script:
+    - sudo apt-get update
+    - sudo apt-get install -y make
+    - make setup
   script:
     - echo "Running unit tests..."
-    - python3 -m unittest test_app.py
+    - make unit-test
 
 deploy:
   stage: "deploy"
