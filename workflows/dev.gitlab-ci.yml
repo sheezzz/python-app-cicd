@@ -70,7 +70,6 @@ unit-test-job:
   before_script:
     - sudo apt-get update
     - sudo apt-get install -y make
-  #    - make setup
   script:
     - echo "Running unit tests..."
     - sudo make unit-test
