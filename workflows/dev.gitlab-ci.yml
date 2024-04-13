@@ -40,7 +40,7 @@ lint-job:
     - ${RUNNER_TAG}
   image: python:3.9-slim
   before_script:
-    - apt-get update && apt-get install -y make
+    - sudo apt-get update && apt-get install -y make
     - make setup
   script:
     - echo "Lint test for the application..."
@@ -67,7 +67,7 @@ unit-test-job:
     - ${RUNNER_TAG}
   image: ${BASE_IMAGE_TAG}
   before_script:
-    - apt-get update && apt-get install -y make
+    - sudo apt-get update && apt-get install -y make
   script:
     - echo "Running unit tests..."
     - sudo make unit-test
