@@ -15,8 +15,20 @@ class TestFlaskApp(unittest.TestCase):
         """Set up the test client."""
         self.app = app.test_client()
 
-    def test_index_route(self):
+    @patch("app.MongoClient")
+    def test_index_route(self, mock_client):
         """Test the index route."""
+        # Mock the MongoDB client and database
+        mock_db = mock_client().expense_tracker
+        mock_db.expenses.find.return_value = [
+            {
+                "description": "Test Expense",
+                "category": "Test Category",
+                "amount": 100.0,
+                "date": "2022-01-01",
+            }
+        ]
+
         response = self.app.get("/")
         self.assertEqual(response.status_code, 200)
 
