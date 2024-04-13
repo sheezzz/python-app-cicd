@@ -36,8 +36,8 @@ include:
 
 lint-job:
   stage: "linting"
-  tags:
-    - ${RUNNER_TAG}
+#  tags:
+#    - ${RUNNER_TAG}
   image: python:3.9-alpine
   before_script:
     - sudo apt-get update
