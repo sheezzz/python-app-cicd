@@ -57,7 +57,7 @@ build:
     - gcloud auth configure-docker $GCP_AR_REGION
   script:
     - echo ${MONGO_URI} > .env
-    - docker build -t ${IMAGE_TAG} --build-arg BASE_IMAGE=${GCP_AR_TAG}/${BASE_IMAGE_NAME}:latest -f Dockerfiles/Dockerfile .
+    - docker build -t ${IMAGE_TAG} --build-arg BASE_IMAGE=$GCP_AR_TAG/$BASE_IMAGE:latest -f Dockerfiles/Dockerfile .
     - docker push ${IMAGE_TAG}
 
 unit-test-job:
