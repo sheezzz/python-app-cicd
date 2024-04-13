@@ -1,5 +1,6 @@
 stages:          # List of stages for jobs, and their order of execution
   - linting
+  - unit_test
   - build
   - test
   - deploy
@@ -13,11 +14,21 @@ include:
 
     rules:
       # when the commit type is push
-      - if: '$CI_PIPELINE_SOURCE == "push"'
+      - if: $CI_PIPELINE_SOURCE == "push"
         # and there are changes in requirements.txt, then execute
         changes: [ "requirements.txt" ]
 
   - local: '/workflows/dev.gitlab-ci.yml'
+
+#    rules:
+#      # when the commit type is push
+#      - if: $CI_PIPELINE_SOURCE == "push"
+#
+#  - local: '/workflows/prod.gitlab-ci.yml'
+#
+#    rules:
+#      # when merge request
+#      - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 
 finish:
   stage: "finish"
