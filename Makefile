@@ -17,4 +17,4 @@ linting:
 
 unit-test:
 	. venv/bin/activate && \
-	python3 -m unittest test_app.py
+	python -m unittest test_app.py
