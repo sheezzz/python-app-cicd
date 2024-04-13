@@ -1,5 +1,7 @@
 # Makefile for linting
 
+SHELL := /bin/bash
+
 .PHONY: linting setup unit-test
 
 setup:
