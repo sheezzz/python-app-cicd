@@ -42,9 +42,9 @@ lint-job:
   before_script:
     - sudo apt-get update
     - sudo apt-get install -y make
-    - make setup
+    - sudo make setup
   script:
-    - make linting
+    - sudo make linting
 
 build:
   stage: "build"
@@ -72,7 +72,7 @@ unit-test-job:
   #    - make setup
   script:
     - echo "Running unit tests..."
-    - make unit-test
+    - sudo make unit-test
 
 semgrep-sast:
   stage: "test"
