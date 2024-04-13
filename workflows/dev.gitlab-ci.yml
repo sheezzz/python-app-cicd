@@ -38,7 +38,7 @@ lint-job:
   stage: "linting"
 #  tags:
 #    - ${RUNNER_TAG}
-  image: python:3.9-alpine
+  image: python:3.9-slim
   before_script:
     - apt-get update && apt-get install -y make
     - make setup

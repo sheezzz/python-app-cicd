@@ -1,12 +1,10 @@
-FROM python:3.9-alpine
+FROM python:3.9-slim
 
 WORKDIR /api
 
 COPY ./requirements.txt /api
 
-# Install gcc using apk
-RUN apk update && \
-    apk add --no-cache gcc
+RUN apt-get update && apt-get install -y --no-install-recommends gcc
 
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
