@@ -49,7 +49,7 @@ lint-job:
 build:
   stage: "build"
   needs:
-    - "linting"
+    - "lint-job"
   tags:
     - ${RUNNER_TAG}
   before_script:
