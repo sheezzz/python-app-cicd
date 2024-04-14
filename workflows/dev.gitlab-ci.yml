@@ -64,15 +64,20 @@ unit-test-job:
   stage: "test"
   needs:
     - "build"
-#  tags:
-#    - ${RUNNER_TAG}
+  tags:
+    - ${RUNNER_TAG}
   image: ${IMAGE_TAG}
-  before_script:
-    - apt-get update
-    - apt-get install -y make
+#  before_script:
+#    - sudo apt-get update
+#    - sudo apt-get install -y make
   script:
-    - echo "Running unit tests..."
-    - make unit-test
+#    - echo "Running unit tests..."
+#    - sudo make unit-test
+    - pytest --junitxml=report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
 
 semgrep-sast:
   stage: "test"
