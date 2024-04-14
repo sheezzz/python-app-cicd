@@ -97,8 +97,6 @@ secret_detection:
 
 container_scanning:
   stage: "test"
-  tags:
-    - ${RUNNER_TAG}
   before_script:
     - gcloud auth configure-docker $GCP_AR_REGION
   variables:
