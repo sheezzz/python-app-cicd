@@ -5,7 +5,7 @@ SHELL := /bin/bash
 .PHONY: linting setup unit-test
 
 setup:
-	sudo apt-get update && apt-get install -y --no-install-recommends gcc
+	apt-get update && apt-get install -y --no-install-recommends gcc
 	#apt-get install -y python3-pip python3-venv
 	python -m venv venv
 	. venv/bin/activate && pip install -r requirements.txt
