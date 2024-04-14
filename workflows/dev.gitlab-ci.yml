@@ -66,15 +66,14 @@ unit-test-job:
     - "build"
   tags:
     - ${RUNNER_TAG}
-  image: ${IMAGE_TAG}
-#  before_script:
-#    - sudo apt-get update
-#    - sudo apt-get install -y make
+  before_script:
+    - gcloud auth configure-docker $GCP_AR_REGION
   script:
-#    - echo "Running unit tests..."
-#    - sudo make unit-test
-#    - pytest --junitxml=report.xml
+    - docker pull ${IMAGE_TAG}
+    - docker rm -f $IMAGE_NAME
+    - docker rmi $(docker images -q $GCP_AR_TAG/$IMAGE_NAME)
     - docker run --name ${IMAGE_NAME} ${IMAGE_TAG} pytest --junitxml=report.xml
+    - docker cp ${IMAGE_NAME}:/api/report.xml ./report.xml
   artifacts:
     when: always
     reports:
