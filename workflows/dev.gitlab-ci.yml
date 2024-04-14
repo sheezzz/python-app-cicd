@@ -73,7 +73,8 @@ unit-test-job:
   script:
 #    - echo "Running unit tests..."
 #    - sudo make unit-test
-    - pytest --junitxml=report.xml
+#    - pytest --junitxml=report.xml
+    - docker run --name ${IMAGE_NAME} ${IMAGE_TAG} pytest --junitxml=report.xml
   artifacts:
     when: always
     reports:
