@@ -36,8 +36,6 @@ include:
 
 lint-job:
   stage: "linting"
-#  tags:
-#    - ${RUNNER_TAG}
   image: python:3.9-slim
   before_script:
     - apt-get update
@@ -95,19 +93,15 @@ secret_detection:
     when: always
     expire_in: 30 days
 
-container_scanning:
-  stage: "test"
-  before_script:
-    - gcloud auth configure-docker $GCP_AR_REGION
-  variables:
-    CS_IMAGE: ${BASE_IMAGE_TAG}
-#    GIT_STRATEGY: clone
-#    CS_DOCKERFILE_PATH: ./Dockerfilebaseimage
-  needs:
-    - "build"
-  artifacts:
-    when: always
-    expire_in: 30 days
+#container_scanning:
+#  stage: "test"
+#  variables:
+#    CS_IMAGE: ${BASE_IMAGE_TAG}
+#  needs:
+#    - "build"
+#  artifacts:
+#    when: always
+#    expire_in: 30 days
 
 deploy:
   stage: "deploy"

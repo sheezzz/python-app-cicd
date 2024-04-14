@@ -11,6 +11,14 @@ variables:
   BASE_IMAGE_NAME: "base_image"
   BASE_IMAGE_TAG: ${GCP_AR_TAG}/${BASE_IMAGE_NAME}:latest
 
+  # -------------- GitLab Configuration Variables -----------------------------
+  REPO_TAG: registry.gitlab.com/${CI_PROJECT_ROOT_NAMESPACE}/${CI_PROJECT_NAME}
+  BASE_IMAGE_TAG_GITLAB: ${REPO_TAG}/${BASE_IMAGE_NAME}:latest
+
+# GitLab built-in security template
+include:
+  - template: Security/Container-Scanning.gitlab-ci.yml
+
 build_base_image:
   stage: "build"
   tags: [$RUNNER_TAG]
@@ -19,3 +27,13 @@ build_base_image:
   script:
     - docker build -t $BASE_IMAGE_TAG -f Dockerfiles/DockerfileBaseImage .
     - docker push $BASE_IMAGE_TAG
+    - docker push $BASE_IMAGE_TAG_GITLAB
+
+container_scanning:
+  variables:
+    CS_IMAGE: ${BASE_IMAGE_TAG_GITLAB}
+  needs:
+    - "build"
+  artifacts:
+    when: always
+    expire_in: 30 days
