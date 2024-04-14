@@ -64,15 +64,15 @@ unit-test-job:
   stage: "test"
   needs:
     - "build"
-  tags:
-    - ${RUNNER_TAG}
+#  tags:
+#    - ${RUNNER_TAG}
   image: ${IMAGE_TAG}
   before_script:
-    - sudo apt-get update
-    - sudo apt-get install -y make
+    - apt-get update
+    - apt-get install -y make
   script:
     - echo "Running unit tests..."
-    - sudo make unit-test
+    - make unit-test
 
 semgrep-sast:
   stage: "test"
