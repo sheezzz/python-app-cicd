@@ -97,10 +97,14 @@ secret_detection:
 
 container_scanning:
   stage: "test"
+  tags:
+    - ${RUNNER_TAG}
+  before_script:
+    - gcloud auth configure-docker $GCP_AR_REGION
   variables:
-    CS_IMAGE: ${IMAGE_TAG}
-    GIT_STRATEGY: clone
-    CS_DOKCERFILE_PATH: ./Dockerfilebaseimage
+    CS_IMAGE: ${BASE_IMAGE_TAG}
+#    GIT_STRATEGY: clone
+#    CS_DOCKERFILE_PATH: ./Dockerfilebaseimage
   needs:
     - "build"
   artifacts:
