@@ -18,5 +18,7 @@ linting:
 	pylint app.py test_app.py
 
 unit-test:
+	ENV PYTHONDONTWRITEBYTECODE 1
+	ENV PYTHONUNBUFFERED 1
 	source /opt/venv/bin/activate && \
 	python3 -m unittest test_app.py
