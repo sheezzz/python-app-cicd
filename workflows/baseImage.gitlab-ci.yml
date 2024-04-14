@@ -25,6 +25,7 @@ build_base_image:
   tags: [$RUNNER_TAG]
   before_script:
     - gcloud auth configure-docker $GCP_AR_REGION
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - docker build -t $BASE_IMAGE_TAG -f Dockerfiles/DockerfileBaseImage .
     - docker push $BASE_IMAGE_TAG
