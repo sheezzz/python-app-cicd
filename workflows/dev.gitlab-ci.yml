@@ -73,6 +73,7 @@ unit-test-job:
   script:
 #    - echo "Running unit tests..."
 #    - sudo make unit-test
+    - source /opt/venv/bin/activate
     - pytest --junitxml=report.xml
   artifacts:
     when: always
