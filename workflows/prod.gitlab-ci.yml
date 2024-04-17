@@ -36,3 +36,7 @@ production:
   environment:
     name: production
     url: http://34.130.147.47:5000
+  rules:
+    -   if: '$CI_COMMIT_BRANCH == "main" || $CI_PIPELINE_SOURCE == "merge_request_event"'
+        when: manual
+        allow_failure: true
