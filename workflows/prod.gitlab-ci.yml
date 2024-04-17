@@ -28,6 +28,7 @@ production:
     - gcloud auth configure-docker $GCP_AR_REGION
   script:
     - echo "Deploy to production server"
+    - echo ${ENVIRONMENT} >> .env
     - docker pull ${IMAGE_TAG}
     - docker rm -f $IMAGE_NAME
     - docker rmi $(docker images -q $GCP_AR_TAG/$IMAGE_NAME)
