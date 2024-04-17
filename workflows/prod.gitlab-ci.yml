@@ -28,12 +28,10 @@ production:
     - gcloud auth configure-docker $GCP_AR_REGION
   script:
     - echo "Deploy to production server"
-    - echo ${PRODUCTION_MONGO_URI} > .env
-    - echo ${PROD_ENVIRONMENT} >> .env
     - docker pull ${IMAGE_TAG}
     - docker rm -f $IMAGE_NAME
     - docker rmi $(docker images -q $GCP_AR_TAG/$IMAGE_NAME)
-    - docker run -d -p 5000:5000 -e PRODUCTION_MONGO_URI=${PRODUCTION_MONGO_URI} -e ENVIRONMENT=${PROD_ENVIRONMENT} --name ${IMAGE_NAME} ${IMAGE_TAG}
+    - docker run -d -p 5000:5000 --name ${IMAGE_NAME} ${IMAGE_TAG}
   environment:
     name: production
     url: http://34.130.147.47:5000

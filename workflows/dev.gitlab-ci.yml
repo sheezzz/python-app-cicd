@@ -106,7 +106,9 @@ deploy_staging:
     - docker pull ${IMAGE_TAG}
     - docker rm -f $IMAGE_NAME
     - docker rmi $(docker images -q $GCP_AR_TAG/$IMAGE_NAME)
-    - docker run -d -p 5000:5000 -e STAGING_MONGO_URI=${STAGING_MONGO_URI} -e ENVIRONMENT=${STAGING_ENVIRONMENT} --name ${IMAGE_NAME} ${IMAGE_TAG}
+    - sed -i 's/^ENVIRONMENT=.*/ENVIRONMENT=staging/' .env
+    - docker cp .env ${IMAGE_NAME}:/path/to/destination/
+    - docker run -d -p 5000:5000 --name ${IMAGE_NAME} ${IMAGE_TAG}
   needs: [ "semgrep-sast", "secret_detection", "unit-test-job"]
   environment:
     name: staging
