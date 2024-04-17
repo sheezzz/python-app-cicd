@@ -20,12 +20,12 @@ variables:
   IMAGE_NAME: "expense-tracker"
   RUNNER_TAG: gcp-runner1-linux
   BASE_IMAGE: "base_image"
-  BASE_IMAGE_TAG: ${GCP_AR_TAG}/${BASE_IMAGE_NAME}:latest
+  BASE_IMAGE_TAG: ${GCP_AR_TAG}/${BASE_IMAGE}:latest
 
 # GitLab built-in security templates
 include:
   - template: Security/SAST.gitlab-ci.yml
-  - template: Security/Container-Scanning.gitlab-ci.yml
+  - template: Jobs/Container-Scanning.gitlab-ci.yml
   - template: Security/Secret-Detection.gitlab-ci.yml
 
 .gcloud_auth:
@@ -81,6 +81,14 @@ unit-test-job:
     when: always
     reports:
       junit: report.xml
+
+container_scanning:
+  variables:
+    CS_IMAGE: ${BASE_IMAGE_TAG}
+    CS_DOCKERFILE_PATH: ./Dockerfiles/DockerfileBaseImage
+  artifacts:
+    when: always
+    expire_in: 30 days
 
 semgrep-sast:
   stage: "test"
