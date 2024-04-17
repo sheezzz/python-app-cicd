@@ -35,6 +35,8 @@ build_base_image:
 container_scanning:
   variables:
     CS_IMAGE: ${BASE_IMAGE_TAG_GITLAB}
+    GIT_STRATEGY: clone
+    CS_DOCKERFILE_PATH: ./DockerfileBaseImage
   needs:
     - "build_base_image"
   artifacts:
