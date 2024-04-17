@@ -60,6 +60,7 @@ build:
 #    - echo ${MONGO_URI} > .env
     - echo ${PRODUCTION_MONGO_URI} >> .env
     - echo ${STAGING_MONGO_URI} >> .env
+    - echo ${ENVIRONMENT} >> .env
     - docker build -t ${IMAGE_TAG} --build-arg BASE_IMAGE=$GCP_AR_TAG/$BASE_IMAGE:latest -f Dockerfiles/Dockerfile .
     - docker push ${IMAGE_TAG}
 
