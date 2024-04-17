@@ -2,11 +2,13 @@ stages:          # List of stages for jobs, and their order of execution
   - linting
   - build
   - test
-  - deploy
+  - staging
+  - production
   - finish
 
 variables:
   RUNNER_TAG: gcp-runner1-linux
+
 
 include:
   - local: '/workflows/baseImage.gitlab-ci.yml'
@@ -18,16 +20,7 @@ include:
         changes: [ "requirements.txt" ]
 
   - local: '/workflows/dev.gitlab-ci.yml'
-
-#    rules:
-#      # when the commit type is push
-#      - if: $CI_PIPELINE_SOURCE == "push"
-#
-#  - local: '/workflows/prod.gitlab-ci.yml'
-#
-#    rules:
-#      # when merge request
-#      - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  - local: '/workflows/prod.gitlab-ci.yml'
 
 finish:
   stage: "finish"

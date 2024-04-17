@@ -2,7 +2,7 @@ stages:
   - linting
   - build
   - test
-  - deploy
+  - staging
 
 variables:
   # -------------- GitLab Configuration Variables -----------------------------
@@ -18,7 +18,7 @@ variables:
   # --------------- Main Pipeline Configuration --------------------------------
   IMAGE_TAG: ${GCP_AR_TAG}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
   IMAGE_NAME: "expense-tracker"
-  RUNNER_TAG: gcp-runner1-linux # agent to run the pipeline
+  RUNNER_TAG: gcp-runner1-linux
   BASE_IMAGE: "base_image"
   BASE_IMAGE_TAG: ${GCP_AR_TAG}/${BASE_IMAGE_NAME}:latest
 
@@ -54,7 +54,9 @@ build:
   before_script:
     - gcloud auth configure-docker $GCP_AR_REGION
   script:
-    - echo ${MONGO_URI} > .env
+#    - echo ${MONGO_URI} > .env
+    - echo ${PRODUCTION_MONGO_URI} >> .env
+    - echo ${STAGING_MONGO_URI} >> .env
     - docker build -t ${IMAGE_TAG} --build-arg BASE_IMAGE=$GCP_AR_TAG/$BASE_IMAGE:latest -f Dockerfiles/Dockerfile .
     - docker push ${IMAGE_TAG}
 
@@ -94,7 +96,7 @@ secret_detection:
     expire_in: 30 days
 
 deploy_staging:
-  stage: "deploy"
+  stage: ${STAGING_ENVIRONMENT}
   tags:
     - ${RUNNER_TAG}
   before_script:
@@ -104,7 +106,7 @@ deploy_staging:
     - docker pull ${IMAGE_TAG}
     - docker rm -f $IMAGE_NAME
     - docker rmi $(docker images -q $GCP_AR_TAG/$IMAGE_NAME)
-    - docker run -d -p 5000:5000 --name ${IMAGE_NAME} ${IMAGE_TAG}
+    - docker run -d -p 5000:5000 -e STAGING_MONGO_URI=${STAGING_MONGO_URI} -e ENVIRONMENT=${STAGING_ENVIRONMENT} --name ${IMAGE_NAME} ${IMAGE_TAG}
   needs: [ "semgrep-sast", "secret_detection", "unit-test-job"]
   environment:
     name: staging

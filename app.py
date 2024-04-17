@@ -14,7 +14,18 @@ app = Flask(__name__)
 
 load_dotenv()
 
-uri = os.environ.get("MONGO_URI")
+# uri = os.environ.get("MONGO_URI")
+
+# Determine the environment (staging or production)
+ENVIRONMENT = os.environ.get("ENVIRONMENT", "staging")
+
+# Set the appropriate MongoDB URI based on the environment
+if ENVIRONMENT == "staging":
+    uri = os.environ.get("STAGING_MONGO_URI")
+elif ENVIRONMENT == "production":
+    uri = os.environ.get("PRODUCTION_MONGO_URI")
+else:
+    raise ValueError("Invalid environment specified")
 
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi("1"))

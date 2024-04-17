@@ -1,0 +1,39 @@
+stages:
+  - production
+
+variables:
+  # -------------- GCP Configuration Variables --------------------------------
+  GCP_AR_REGION: northamerica-northeast2-docker.pkg.dev
+  PROJECT_ID: cbd3345-2-sheena
+  ARTIFACT_REGISTRY_REPOSITORY: app-dev-docker
+  GCP_AR_TAG: $GCP_AR_REGION/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY
+  SERVICE_ACCOUNT_USER: gitlab-artifact-registry@cbd3345-2-sheena.iam.gserviceaccount.com
+
+  # --------------- Main Pipeline Configuration --------------------------------
+  IMAGE_TAG: ${GCP_AR_TAG}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
+  IMAGE_NAME: "expense-tracker"
+  PROD_RUNNER_TAG: gcp-gitlab-runner3-linux
+
+.gcloud_auth:
+  script:
+    - gcloud config set project $PROJECT_ID
+    - gcloud config set account $SERVICE_ACCOUNT_USER
+    - gcloud auth configure-docker $GCP_AR_REGION
+
+production:
+  stage: ${PROD_ENVIRONMENT}
+  tags:
+    - ${PROD_RUNNER_TAG}
+  before_script:
+    - gcloud auth configure-docker $GCP_AR_REGION
+  script:
+    - echo "Deploy to production server"
+    - echo ${PRODUCTION_MONGO_URI} > .env
+    - echo ${PROD_ENVIRONMENT} >> .env
+    - docker pull ${IMAGE_TAG}
+    - docker rm -f $IMAGE_NAME
+    - docker rmi $(docker images -q $GCP_AR_TAG/$IMAGE_NAME)
+    - docker run -d -p 5000:5000 -e PRODUCTION_MONGO_URI=${PRODUCTION_MONGO_URI} -e ENVIRONMENT=${PROD_ENVIRONMENT} --name ${IMAGE_NAME} ${IMAGE_TAG}
+  environment:
+    name: production
+    url: http://34.130.147.47:5000
