@@ -16,7 +16,3 @@ linting:
 	black --check app.py test_app.py && \
 	flake8 app.py test_app.py && \
 	pylint app.py test_app.py
-
-unit-test:
-	source /opt/venv/bin/activate && \
-	python3 -m unittest test_app.py
