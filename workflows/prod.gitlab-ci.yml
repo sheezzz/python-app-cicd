@@ -1,5 +1,5 @@
 stages:
-  - production
+  - "production"
 
 variables:
   # -------------- GCP Configuration Variables --------------------------------
@@ -21,7 +21,7 @@ variables:
     - gcloud auth configure-docker $GCP_AR_REGION
 
 production:
-  stage: ${PROD_ENVIRONMENT}
+  stage: production
   tags:
     - ${PROD_RUNNER_TAG}
   before_script:

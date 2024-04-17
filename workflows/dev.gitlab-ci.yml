@@ -96,7 +96,7 @@ secret_detection:
     expire_in: 30 days
 
 deploy_staging:
-  stage: ${STAGING_ENVIRONMENT}
+  stage: "staging"
   tags:
     - ${RUNNER_TAG}
   before_script:
