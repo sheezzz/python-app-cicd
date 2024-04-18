@@ -21,7 +21,7 @@ Executes unit tests using Pytest, performs container scanning, Static Applicatio
 Deploying to Staging environment. Staging server is a Google Cloud Virtual Machine.
 
 ### PRODUCTION
-Trigger a manual action (approval) before deployment to Production server, which is a Google Cloud Virtual Machine.
+Trigger a manual action before deployment to Production server, which is a Google Cloud Virtual Machine.
 
 ### FINISH
 Executes cleanup tasks, such as removing unused Docker resources, after the main pipeline execution.
