@@ -107,8 +107,8 @@ deploy_staging:
   script:
     - echo "Deploy to staging server"
     - echo ${ENVIRONMENT} >> .env
-    - sed -i 's/^ENVIRONMENT=.*/ENVIRONMENT=staging/' ${STAGING_ENV}.env
-    - docker cp ${STAGING_ENV}.env ${IMAGE_NAME}:/api/.env
+    - sed -i 's/^ENVIRONMENT=.*/ENVIRONMENT=staging/' ${STAGING_ENV}/.env
+    - docker cp ${STAGING_ENV}/.env ${IMAGE_NAME}:/api/.env
     - docker pull ${IMAGE_TAG}
     - docker rm -f $IMAGE_NAME
     - docker rmi $(docker images -q $GCP_AR_TAG/$IMAGE_NAME)
