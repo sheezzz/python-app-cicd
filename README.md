@@ -39,12 +39,12 @@ Executes cleanup tasks, such as removing unused Docker resources, after the main
 
 ## API Documentation
 
-You can find the App Module API documentation in the [App module API](APIdocumentations/app.md) file.
+You can find the App Module API documentation in the [App module API](APIdocumentations/app.html) file.
 
 Here is a sample screeshot of the App Module API documentation.
 ![App module API](APIdocumentations/moduleapp.png)
 
-You can find the Test-app Module API documentation in the [testapp module API](APIdocumentations/test-app.md) file.
+You can find the Test-app Module API documentation in the [testapp module API](APIdocumentations/test_app.html) file.
 Here is a sample screeshot of the Test-App Module API documentation.
 ![Test-App module API](APIdocumentations/testappmodule.png)
 
