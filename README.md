@@ -39,7 +39,7 @@ Executes cleanup tasks, such as removing unused Docker resources, after the main
 
 ## API Documentation
 
-You can find the App Module API documentation in the [App module API](APIdocumentations/app.html) file.
+You can find the App Module API documentation in the [App module API](http://apidocumentationgitlab.s3-website-us-east-1.amazonaws.com/) file.
 
 Here is a sample screeshot of the App Module API documentation.
 ![App module API](APIdocumentations/moduleapp.png)
