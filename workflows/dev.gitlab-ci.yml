@@ -25,7 +25,6 @@ variables:
 # GitLab built-in security templates
 include:
   - template: Security/SAST.gitlab-ci.yml
-  - template: Jobs/Container-Scanning.gitlab-ci.yml
   - template: Security/Secret-Detection.gitlab-ci.yml
 
 .gcloud_auth:
@@ -81,21 +80,6 @@ unit-test-job:
     when: always
     reports:
       junit: report.xml
-
-container_scanning:
-  variables:
-    CS_IMAGE: ${BASE_IMAGE_TAG}
-    CS_DOCKERFILE_PATH: ./DockerfileBaseImage
-    GIT_STRATEGY: clone
-    CS_REGISTRY_USER: _json_key
-    CS_REGISTRY_PASSWORD: ${GCP_CREDENTIALS}
-  services:
-    - docker:dind
-  artifacts:
-    when: always
-    expire_in: 30 days
-  needs:
-    - "build"
 
 semgrep-sast:
   stage: "test"

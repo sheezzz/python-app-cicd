@@ -21,9 +21,6 @@ include:
 
   - local: '/workflows/dev.gitlab-ci.yml'
   - local: '/workflows/prod.gitlab-ci.yml'
-#
-#    rules:
-#      - if: '$CI_COMMIT_BRANCH == "main" || $CI_PIPELINE_SOURCE == "merge_request_event"'
 
 finish:
   stage: "finish"
