@@ -137,7 +137,7 @@ deploy_staging:
     - docker rm -f $IMAGE_NAME
     - docker rmi $(docker images -q $GCP_AR_TAG/$IMAGE_NAME)
     - docker run -d -p 5000:5000 --name ${IMAGE_NAME} ${IMAGE_TAG}
-  needs: [ "semgrep-sast", "secret_detection", "container_scanning" "unit-test-job"]
+  needs: [ "semgrep-sast", "secret_detection", "container_scanning", "unit-test-job"]
   environment:
     name: staging
     url: http://34.130.28.96:5000
