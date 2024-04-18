@@ -21,6 +21,7 @@ variables:
   RUNNER_TAG: gcp-runner1-linux
   BASE_IMAGE: "base_image"
   BASE_IMAGE_TAG: ${GCP_AR_TAG}/${BASE_IMAGE}:latest
+  STAGING_ENV: /home/sheena_dumbrique/builds/MCDW17CzU/0/cbd3345_2_sheena/gitlab-project
 
 # GitLab built-in security templates
 include:
@@ -106,8 +107,8 @@ deploy_staging:
   script:
     - echo "Deploy to staging server"
     - echo ${ENVIRONMENT} >> .env
-    - sed -i 's/^ENVIRONMENT=.*/ENVIRONMENT=staging/' .env
-    - docker cp .env ${IMAGE_NAME}:/api/.env
+    - sed -i 's/^ENVIRONMENT=.*/ENVIRONMENT=staging/' ${STAGING_ENV}.env
+    - docker cp ${STAGING_ENV}.env ${IMAGE_NAME}:/api/.env
     - docker pull ${IMAGE_TAG}
     - docker rm -f $IMAGE_NAME
     - docker rmi $(docker images -q $GCP_AR_TAG/$IMAGE_NAME)
