@@ -19,15 +19,21 @@ This repository contains the setup and configuration files necessary for deployi
 
 ## API Documentation
 
-You can find the API documentation in the [testapp module API](APIdocumentations/test-app.md) file.
+You can find the App Module API documentation in the [App module API](APIdocumentations/app.md) file.
+
+Here is a sample screeshot of the App Module API documentation.
+[App module API](APIdocumentations/moduleapp.png)
+
+You can find the Test-app Module API documentation in the [testapp module API](APIdocumentations/test-app.md) file.
+[Test-App module API](APIdocumentations/testappmodule.png)
 
 
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Docker installed on the development environment to run the application.
+If you are using using GitLab CICD and wants to setup your own runner, follow these steps:
+[Create and register a project runner](https://docs.gitlab.com/ee/tutorials/create_register_first_runner/#create-and-register-a-project-runner)
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
 ## Support
 If you need assistance or have any questions, feel free to reach out through one of the following channels:
