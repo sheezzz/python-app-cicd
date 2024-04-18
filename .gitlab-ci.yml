@@ -24,7 +24,8 @@ include:
 
 finish:
   stage: "finish"
-  needs: "production"
+  needs:
+    - "production"
   tags:
     - $RUNNER_TAG
   script:
