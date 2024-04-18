@@ -1,0 +1,31 @@
+stages:          # List of stages for jobs, and their order of execution
+  - linting
+  - build
+  - test
+  - staging
+  - production
+  - finish
+
+variables:
+  RUNNER_TAG: gcp-runner1-linux
+
+
+include:
+  - local: '/workflows/baseImage.gitlab-ci.yml'
+
+    rules:
+      # when the commit type is push
+      - if: $CI_PIPELINE_SOURCE == "push"
+        # and there are changes in requirements.txt, then execute
+        changes: [ "requirements.txt" ]
+
+  - local: '/workflows/dev.gitlab-ci.yml'
+  - local: '/workflows/prod.gitlab-ci.yml'
+
+finish:
+  stage: "finish"
+  tags:
+    - $RUNNER_TAG
+  script:
+    # clean up the space
+    - docker system prune -a --volumes -f

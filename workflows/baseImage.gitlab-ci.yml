@@ -1,0 +1,42 @@
+stages:
+  - build
+  - test
+
+variables:
+  # -------------- GCP Configuration Variables --------------------------------
+  GCP_AR_REGION: northamerica-northeast2-docker.pkg.dev  # region of the artifact registry repository
+  PROJECT_ID: cbd3345-2-sheena  # project ID
+  ARTIFACT_REGISTRY_REPOSITORY: app-dev-docker # name of the artifact registry repository
+  GCP_AR_TAG: $GCP_AR_REGION/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY # the GCP tag for docker push and pull
+  RUNNER_TAG: gcp-runner1-linux # agent to run the pipeline
+  BASE_IMAGE_NAME: "base_image"
+  BASE_IMAGE_TAG: ${GCP_AR_TAG}/${BASE_IMAGE_NAME}:latest
+
+  # -------------- GitLab Configuration Variables -----------------------------
+  REPO_TAG: registry.gitlab.com/${CI_PROJECT_ROOT_NAMESPACE}/${CI_PROJECT_NAME}
+  BASE_IMAGE_TAG_GITLAB: ${REPO_TAG}/${BASE_IMAGE_NAME}:latest
+
+# GitLab built-in security template
+include:
+  - template: Security/Container-Scanning.gitlab-ci.yml
+
+build_base_image:
+  stage: "build"
+  tags: [$RUNNER_TAG]
+  before_script:
+    - gcloud auth configure-docker $GCP_AR_REGION
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker build -t $BASE_IMAGE_TAG -f Dockerfiles/DockerfileBaseImage .
+    - docker push $BASE_IMAGE_TAG
+    - docker tag $BASE_IMAGE_TAG $BASE_IMAGE_TAG_GITLAB
+    - docker push $BASE_IMAGE_TAG_GITLAB
+
+container_scanning:
+  variables:
+    CS_IMAGE: ${BASE_IMAGE_TAG_GITLAB}
+  needs:
+    - "build_base_image"
+  artifacts:
+    when: always
+    expire_in: 30 days
