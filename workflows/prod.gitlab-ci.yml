@@ -36,7 +36,7 @@ production:
   environment:
     name: production
     url: http://34.130.147.47:5000
-  rules:
-    -   if: '$CI_COMMIT_BRANCH == "main"
+    rules:
+      - if: $CI_COMMIT_BRANCH == "main"
         when: manual
         allow_failure: true
