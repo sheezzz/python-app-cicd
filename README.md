@@ -6,6 +6,26 @@ Deployment and Configuration of a Web Application using GitLab CI/CD
 
 ## Description
 This repository contains the setup and configuration files necessary for deploying and automating the continuous integration and continuous deployment (CI/CD) pipeline for a web application using GitLab CI/CD.
+## Pipeline Stages
+
+### LINTING
+Use of Python tools to automate code formatting, enforce PEP8 coding standards.
+
+### BUILD
+Builds base image, Builds a Docker image for the application, and pushes to Artifact Registry.
+
+### TEST
+Executes unit tests using Pytest, performs container scanning, Static Application Security testing, secret detection.
+
+### PRODUCTION
+Trigger a manual action (approval) before deployment to Production server, which is a Google Cloud Virtual Machine.
+
+### STAGING
+Deploying to Staging environment. Staging server is a Google Cloud Virtual Machine.
+
+### FINISH
+Executes cleanup tasks, such as removing unused Docker resources, after the main pipeline execution.
+
 
 ## Badges
 
@@ -32,9 +52,13 @@ Here is a sample screeshot of the Test-App Module API documentation.
 
 ## Installation
 Docker installed on the development environment to run the application.
+
+For development, install Python (Python 3.11.4 or up recommended)
+
 If you are using using GitLab CICD and wants to setup your own runner, follow these steps:
 [Create and register a project runner](https://docs.gitlab.com/ee/tutorials/create_register_first_runner/#create-and-register-a-project-runner)
 
+In addition to the installations, if you also need a [Google Cloud Project](https://console.cloud.google.com/) and [MongoDB Atlas](https://www.mongodb.com/products/platform/cloud) account and database ready to use.
 
 ## Support
 If you need assistance or have any questions, feel free to reach out through one of the following channels:
