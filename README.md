@@ -29,9 +29,18 @@ Executes cleanup tasks, such as removing unused Docker resources, after the main
 
 ## Badges
 
+![Website](https://img.shields.io/website?url=http%3A%2F%2F34.130.147.47%3A5000%2F&style=for-the-badge)
+
+
 ![Static Badge](https://img.shields.io/badge/database_server-mongodb-green?style=flat-square)
 
+![Static Badge](https://img.shields.io/badge/application_server-google_cloud_computeengine-green?style=flat-square)
+
+![GitLab Language Count](https://img.shields.io/gitlab/languages/count/cbd3345_2_sheena%2Fgitlab-project)
+
+
 [![pipeline status](https://gitlab.com/cbd3345_2_sheena/gitlab-project/badges/main/pipeline.svg)](https://gitlab.com/cbd3345_2_sheena/gitlab-project/-/commits/main)
+
 
 
 ## Visuals
@@ -44,7 +53,7 @@ You can find the App Module API documentation in the [App module API](http://api
 Here is a sample screeshot of the App Module API documentation.
 ![App module API](APIdocumentations/moduleapp.png)
 
-You can find the Test-app Module API documentation in the [testapp module API](http://apidocumentationgitlab2.s3-website-us-east-1.amazonaws.com) file.
+You can find the Test-app Module API documentation in the [Test_App module API](http://apidocumentationgitlab2.s3-website-us-east-1.amazonaws.com) file.
 Here is a sample screeshot of the Test-App Module API documentation.
 ![Test-App module API](APIdocumentations/testappmodule.png)
 
