@@ -22,10 +22,11 @@ This repository contains the setup and configuration files necessary for deployi
 You can find the App Module API documentation in the [App module API](APIdocumentations/app.md) file.
 
 Here is a sample screeshot of the App Module API documentation.
-[App module API](APIdocumentations/moduleapp.png)
+![App module API](APIdocumentations/moduleapp.png)
 
 You can find the Test-app Module API documentation in the [testapp module API](APIdocumentations/test-app.md) file.
-[Test-App module API](APIdocumentations/testappmodule.png)
+Here is a sample screeshot of the Test-App Module API documentation.
+![Test-App module API](APIdocumentations/testappmodule.png)
 
 
 
