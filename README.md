@@ -53,16 +53,26 @@ When you're ready to make this README your own, just edit this file and use the 
 Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
 
 ## Name
-Choose a self-explaining name for your project.
+Deployment and Configuration of a Web Application using GitLab CI/CD
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+This repository contains the setup and configuration files necessary for deploying and automating the continuous integration and continuous deployment (CI/CD) pipeline for a web application using GitLab CI/CD.
 
 ## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+
+![Gitlab Pipeline Status of main branch](https://img.shields.io/gitlab/pipeline-status/cbd3345_2_sheena%2Fgitlab-project?branch=main&style=for-the-badge&logo=gitlab)
+
+
+![Gitlab Pipeline Status of dev-branch](https://img.shields.io/gitlab/pipeline-status/cbd3345_2_sheena%2Fgitlab-project?branch=dev-branch&style=for-the-badge&logo=gitlab)
+
+![Static Badge](https://img.shields.io/badge/database_server-mongodb-green?style=flat-square)
+
+
+
 
 ## Visuals
 Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+
 
 ## Installation
 Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
@@ -71,23 +81,42 @@ Within a particular ecosystem, there may be a common way of installing things, s
 Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
 ## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+If you need assistance or have any questions, feel free to reach out through one of the following channels:
+
+Chat Room: Join our community chat room on [Slack](https://join.slack.com/t/slack-wjn8365/shared_invite/zt-2h52ilcgi-N330_9FXPN9S6ittxT4fYg) to interact with other users and developers.
+
+Email: For inquiries or support requests, you can email us at support@gitlabcicd.com.
 
 ## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+For future releases
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Enhance testing capabilities and ensure high code quality.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+Improve deployment orchestration and implement rollback mechanisms for error handling.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Integrate DAST scans into deployment pipelines for continuous security testing.
+
+Blue-Green Deployment:
+Implement blue-green deployment strategy for zero-downtime deployments.
+Automate switching between active and inactive environments.
+
+Rollback Automation:
+Develop automated rollback mechanisms to revert deployments in case of failures.
+Implement version control and tagging for easier rollback management.
+
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Authors:
+[EDERLINDA REYLA] - Contributor
+[GAYATHRI JAYAKUMAR] - Contributor
+[SHEENA DUMBRIQUE] - Contributor
+[SHERUBY MONDERO] - Contributor
 
-## License
-For open source projects, say how it is licensed.
+Acknowledgments:
+Special thanks to Mr. Amir Samiezadeh for the valuable insights and support in developing this project.
+
+
+
 
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
