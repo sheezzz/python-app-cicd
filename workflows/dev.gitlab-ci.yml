@@ -92,7 +92,11 @@ container_scanning:
     - docker:dind
   before_script:
     - apk add --no-cache git
-    - wget $(curl -s https://api.github.com/repos/gitlab-org/security-products/container-scanning/releases/latest | grep "browser_download_url.*gtcs-linux-amd64" | cut -d : -f 2,3 | tr -d \") -O /usr/local/bin/gtcs
+    - |
+      wget $(curl -s https://api.github.com/repos/gitlab-org/security-products/container-scanning/releases/latest | \
+        grep "browser_download_url.*gtcs-linux-amd64" | \
+        cut -d : -f 2,3 | \
+        tr -d \") -O /usr/local/bin/gtcs
     - chmod +x /usr/local/bin/gtcs
   script:
     - gtcs scan
