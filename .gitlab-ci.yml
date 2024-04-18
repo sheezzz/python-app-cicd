@@ -1,6 +1,7 @@
 stages:          # List of stages for jobs, and their order of execution
   - linting
   - build
+  - image-scan
   - test
   - staging
   - production
