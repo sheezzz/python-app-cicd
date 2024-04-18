@@ -1,6 +1,5 @@
 stages:
   - build
-  - image-scan
 
 variables:
   # -------------- GCP Configuration Variables --------------------------------
@@ -31,13 +30,3 @@ build_base_image:
     - docker push $BASE_IMAGE_TAG
     - docker tag $BASE_IMAGE_TAG $BASE_IMAGE_TAG_GITLAB
     - docker push $BASE_IMAGE_TAG_GITLAB
-
-container_scanning:
-  stage: "image-scan"
-  variables:
-    CS_IMAGE: ${BASE_IMAGE_TAG_GITLAB}
-  needs:
-    - "build_base_image"
-  artifacts:
-    when: always
-    expire_in: 30 days
