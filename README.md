@@ -9,9 +9,6 @@ This repository contains the setup and configuration files necessary for deployi
 
 ## Badges
 
-![Gitlab Pipeline Status of main branch](https://img.shields.io/gitlab/pipeline-status/cbd3345_2_sheena%2Fgitlab-project?branch=main&style=for-the-badge&logo=gitlab)
-
-
 ![Gitlab Pipeline Status of dev-branch](https://img.shields.io/gitlab/pipeline-status/cbd3345_2_sheena%2Fgitlab-project?branch=dev-branch&style=for-the-badge&logo=gitlab)
 
 ![Static Badge](https://img.shields.io/badge/database_server-mongodb-green?style=flat-square)
@@ -21,6 +18,11 @@ This repository contains the setup and configuration files necessary for deployi
 
 ## Visuals
 ![Staging and Production access demonstration](gifs/demo_staging_and_prod_environment_access.gif)
+
+## API Documentation
+
+<iframe src="APIdocumentations/app.html" width="100%" height="600px"></iframe>
+
 
 
 ## Installation
