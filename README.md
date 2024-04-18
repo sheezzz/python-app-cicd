@@ -20,7 +20,7 @@ This repository contains the setup and configuration files necessary for deployi
 
 
 ## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+![Staging and Production access demonstration](gifs/demo_staging_and_prod_environment_access.gif)
 
 
 ## Installation
