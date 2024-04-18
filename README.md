@@ -9,11 +9,9 @@ This repository contains the setup and configuration files necessary for deployi
 
 ## Badges
 
-![Gitlab Pipeline Status of dev-branch](https://img.shields.io/gitlab/pipeline-status/cbd3345_2_sheena%2Fgitlab-project?branch=dev-branch&style=for-the-badge&logo=gitlab)
-
 ![Static Badge](https://img.shields.io/badge/database_server-mongodb-green?style=flat-square)
 
-
+[![pipeline status](https://gitlab.com/cbd3345_2_sheena/gitlab-project/badges/main/pipeline.svg)](https://gitlab.com/cbd3345_2_sheena/gitlab-project/-/commits/main)
 
 
 ## Visuals
