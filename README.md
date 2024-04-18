@@ -95,9 +95,8 @@ Implement version control and tagging for easier rollback management.
 
 
 ## Authors and acknowledgment
-## Project leaders
 
-Authors & Maintainers:
+Project Leaders & Maintainers:
 
 - [Ederlinda Reyla](https://gitlab.com/C0884805) (core team)
 - [Gayathri Jayakumar](https://gitlab.com/gayathri_jk) (core team)
@@ -111,4 +110,4 @@ Special thanks to [Mr. Amir Samiezadeh](https://gitlab.com/amirsmz) for the valu
 
 
 ## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Our project has met all the required objectives. While additional enhancements are optional, we welcome any feedback you may have. Feel free to reach out to us via our [Slack Channel](https://join.slack.com/t/slack-wjn8365/shared_invite/zt-2h52ilcgi-N330_9FXPN9S6ittxT4fYg) to share your thoughts. Moreover, we encourage you to fork the project and implement your own modifications. Don't hesitate to share your updates on the Slack channel for community support.
